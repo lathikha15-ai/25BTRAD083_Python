@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}My Appointments{% endblock %}
+{% block content %}
+<div class="section-heading">
+  <div><p class="eyebrow">PATIENT PORTAL</p><h1>Hello, {{ session.get('name') }}</h1><p class="muted">Manage your hospital visits.</p></div>
+  <a class="button" href="{{ url_for('book_appointment') }}">+ Book appointment</a>
+</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Doctor</th><th>Specialization</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th><th>Actions</th></tr></thead>
+  <tbody>
+  {% for a in appointments %}
+    <tr>
+      <td>{{ a.doctor_name }}</td><td>{{ a.specialization }}</td><td>{{ a.appointment_date }}</td>
+      <td>{{ a.appointment_time }}</td><td>{{ a.reason }}</td>
+      <td><span class="status {{ a.status|lower }}">{{ a.status }}</span></td>
+      <td>
+        {% if a.status == 'Booked' %}
+          <details class="reschedule-box">
+            <summary>Reschedule</summary>
+            <form method="post" action="{{ url_for('reschedule_appointment', appointment_id=a.id) }}">
+              <label>New date<input type="date" name="appointment_date" min="{{ today }}" required></label>
+              <label>New time<input type="time" name="appointment_time" min="09:00" max="17:00" required></label>
+              <button class="small-button" type="submit">Save new time</button>
+            </form>
+          </details>
+          <form method="post" action="{{ url_for('cancel_appointment', appointment_id=a.id) }}">
+            <button class="link-button danger-text" type="submit">Cancel</button>
+          </form>
+        {% else %}—{% endif %}
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="7" class="empty">No appointments yet. Book your first appointment.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

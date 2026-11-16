@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Patient Registration{% endblock %}
+{% block content %}
+<div class="form-card">
+  <p class="eyebrow">CREATE AN ACCOUNT</p><h1>Patient registration</h1>
+  <form method="post">
+    <label>Full name<input name="name" required maxlength="80"></label>
+    <label>Email address<input type="email" name="email" required></label>
+    <label>Phone number<input name="phone" required maxlength="20"></label>
+    <label>Password<input type="password" name="password" required minlength="6"></label>
+    <button class="button full" type="submit">Create account</button>
+  </form>
+  <p class="muted">Already registered? <a href="{{ url_for('login') }}">Login</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}CarePoint | Home{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">HEALTHCARE, MADE SIMPLE</p>
+    <h1>Book your hospital appointment with ease.</h1>
+    <p class="hero-copy">Find a doctor, choose a suitable time and keep your appointments organized in one place.</p>
+    {% if session.get('role') == 'patient' %}
+      <a class="button" href="{{ url_for('book_appointment') }}">Book an appointment</a>
+    {% elif not session.get('user_id') %}
+      <a class="button" href="{{ url_for('register') }}">Get started</a>
+      <a class="button secondary" href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+  </div>
+  <div class="hero-symbol">✚</div>
+</section>
+<div class="section-heading">
+  <div><p class="eyebrow">OUR MEDICAL TEAM</p><h2>Available doctors</h2></div>
+</div>
+<form class="search-form" method="get" action="{{ url_for('index') }}">
+  <input type="search" name="q" value="{{ search }}" placeholder="Search by doctor name or specialization">
+  <button class="button" type="submit">Search</button>
+  {% if search %}<a class="button secondary" href="{{ url_for('index') }}">Clear</a>{% endif %}
+</form>
+<div class="cards">
+{% for doctor in doctors %}
+  <article class="doctor-card">
+    <div class="doctor-avatar">Dr</div>
+    <h3>{{ doctor.name }}</h3>
+    <p class="specialty">{{ doctor.specialization }}</p>
+    <p><strong>Available:</strong> {{ doctor.available_days }}</p>
+    <p><strong>Consultation:</strong> ₹{{ "%.0f"|format(doctor.consultation_fee) }}</p>
+  </article>
+{% else %}
+  <p>No matching active doctors found.</p>
+{% endfor %}
+</div>
+{% endblock %}

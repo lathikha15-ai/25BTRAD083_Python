@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Book Appointment{% endblock %}
+{% block content %}
+<div class="form-card wide">
+  <p class="eyebrow">SCHEDULE A VISIT</p><h1>Book an appointment</h1>
+  <form method="post">
+    <label>Select doctor
+      <select name="doctor_id" required>
+        <option value="">Choose a doctor</option>
+        {% for doctor in doctors %}
+          <option value="{{ doctor.id }}">{{ doctor.name }} — {{ doctor.specialization }} (₹{{ "%.0f"|format(doctor.consultation_fee) }}) · {{ doctor.available_days }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <div class="form-grid">
+      <label>Appointment date<input type="date" name="appointment_date" min="{{ today }}" required></label>
+      <label>Appointment time<input type="time" name="appointment_time" min="09:00" max="17:00" required></label>
+    </div>
+    <label>Reason for visit<textarea name="reason" rows="3" maxlength="300" required placeholder="Briefly describe the reason for your visit"></textarea></label>
+    <p class="muted">Booking hours: 9:00 AM–5:00 PM. The selected date must match the doctor's listed working days.</p>
+    <button class="button full" type="submit">Confirm appointment</button>
+  </form>
+</div>
+{% endblock %}
