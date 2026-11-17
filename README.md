@@ -1,17 +1,17 @@
-# MONIKA_25BTRAD067_Python
+# LATHIKHA_25BTRAD083_Python
 
 Python lab exercises, problem-solving assignments, mini projects, and the Hospital Appointment Management System.
 
 ## Folder structure
 
-- `25BTRAD067_Experiential Learning Activity/` – Hospital Appointment Management System (Flask + SQLite)
-- `25BTRAD067_Lab_Experiments/` – Lab exercises, Parts 1–5
-- `25BTRAD067_Problem_Solving/` – Unit 1 assignment and mini projects, Parts 1–3
+- `25BTRAD083_Experiential Learning Activity/` – Hospital Appointment Management System (Flask + SQLite)
+- `25BTRAD083_Lab_Experiments/` – Lab exercises, Parts 1–5
+- `25BTRAD083_Problem_Solving/` – Unit 1 assignment and mini projects, Parts 1–3
 
 ## Open in Visual Studio Code
 
 1. Extract or clone this repository.
-2. Open the `MONIKA_25BTRAD067_Python` folder in Visual Studio Code.
+2. Open the `Lathikha_25BTRAD083_Python` folder in Visual Studio Code.
 3. Open the required `.py` file.
 4. Select a Python interpreter using **Python: Select Interpreter**.
 5. Run the file in the integrated terminal. Programs that use `input()` must be run in the terminal, not the Output panel.
@@ -20,7 +20,7 @@ Python lab exercises, problem-solving assignments, mini projects, and the Hospit
 
 Open the project folder:
 
-`25BTRAD067_Experiential Learning Activity/Hospital_Appointment_Management_System/`
+`25BTRAD083_Experiential Learning Activity/Hospital_Appointment_Management_System/`
 
 Create and activate a virtual environment, then install dependencies:
 
